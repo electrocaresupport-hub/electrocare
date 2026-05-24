@@ -16,8 +16,8 @@ function PolicyPage() {
   const { t } = useI18n();
   const points = [
     "Transparent, upfront pricing — no hidden fees.",
-    "No-fix, no-fee diagnostics on most appliances.",
-    "30-day service warranty on repaired parts.",
+    "Honest inspection and diagnosis before any repair.",
+    "Clear estimates shared before work begins.",
     "Genuine parts only, sourced from trusted suppliers.",
     "Trained, background-checked technicians.",
     "Customer data is private and never sold.",

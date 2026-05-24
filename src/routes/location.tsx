@@ -23,10 +23,11 @@ function LocationPage() {
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold text-gradient">{t("location_title")}</h1>
           <p className="mt-4 text-muted-foreground">{t("location_body")}</p>
+          <p className="mt-3 text-sm font-semibold text-primary">Khowai, Tripura, India</p>
           <div className="mt-8 overflow-hidden rounded-2xl border border-border">
             <iframe
               title="map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=90.3754%2C23.7460%2C90.4254%2C23.7960&layer=mapnik"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=91.5800%2C24.0600%2C91.6400%2C24.1100&layer=mapnik&marker=24.0833%2C91.6000"
               className="w-full h-72"
               loading="lazy"
             />
