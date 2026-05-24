@@ -13,12 +13,12 @@ export const Route = createFileRoute("/reviews")({
 });
 
 const reviews = [
-  { name: "Ananya S.", text: "Fixed my fridge the same day. Polite technician, fair price.", rating: 5 },
-  { name: "Rahim K.", text: "AC cooling restored perfectly. Highly recommended!", rating: 5 },
-  { name: "Priya M.", text: "Booked on WhatsApp in 2 minutes. Super easy.", rating: 5 },
-  { name: "Imran H.", text: "Washing machine works like new. Great service.", rating: 4 },
-  { name: "Tanvir R.", text: "Honest pricing and quick turnaround.", rating: 5 },
-  { name: "Sneha D.", text: "Microwave repaired neatly. Will use again.", rating: 5 },
+  { name: "Anup Dutta", text: "Fixed my fridge the same day. Polite technician, fair price.", rating: 5 },
+  { name: "Amar Pal", text: "AC cooling restored perfectly. Highly recommended!", rating: 5 },
+  { name: "Anita Sharma", text: "Booked on WhatsApp in 2 minutes. Super easy.", rating: 5 },
+  { name: "Shibu Sharma", text: "Washing machine works like new. Great service.", rating: 5 },
+  { name: "Shankar Das", text: "Honest pricing and quick turnaround.", rating: 5 },
+  { name: "Sanjib Bir", text: "Microwave repaired neatly. Will use again.", rating: 5 },
 ];
 
 function ReviewsPage() {
