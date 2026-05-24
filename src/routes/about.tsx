@@ -15,10 +15,9 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   const { t } = useI18n();
   const stats = [
-    { icon: Users, label: "Happy Customers", value: "10,000+" },
-    { icon: Wrench, label: "Repairs Done", value: "25,000+" },
-    { icon: Award, label: "Years Experience", value: "8+" },
-    { icon: Shield, label: "Warranty", value: "30 Days" },
+    { icon: Users, label: "Happy Customers", value: "10,000" },
+    { icon: Wrench, label: "Repairs Done", value: "10,000" },
+    { icon: Award, label: "Years Experience", value: "13+" },
   ];
   return (
     <section className="px-4 py-10 sm:py-16">
