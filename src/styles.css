@@ -168,7 +168,24 @@
   .btn-glow:hover {
     transform: translateY(-2px);
     box-shadow: 0 16px 50px -10px oklch(0.6 0.22 255 / 0.75);
+  .input {
+    width: 100%;
+    background: oklch(1 0 0 / 0.7);
+    border: 1px solid var(--color-border);
+    border-radius: 0.85rem;
+    padding: 0.7rem 0.95rem;
+    font-size: 0.95rem;
+    color: var(--color-foreground);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    outline: none;
   }
+  .input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px oklch(0.6 0.22 255 / 0.15);
+    background: oklch(1 0 0 / 0.9);
+  }
+  .input::placeholder { color: var(--color-muted-foreground); opacity: 0.7; }
+}
   .btn-glow::after {
     content: "";
     position: absolute; inset: 0; border-radius: inherit;
