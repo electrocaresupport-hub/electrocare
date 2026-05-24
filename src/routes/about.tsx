@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
-import { Shield, Award, Users, Wrench } from "lucide-react";
+import { Award, Users, Wrench } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
