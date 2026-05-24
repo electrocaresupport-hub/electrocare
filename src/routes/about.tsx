@@ -26,7 +26,7 @@ function AboutPage() {
           <h1 className="text-3xl sm:text-5xl font-bold text-gradient">{t("about_title")}</h1>
           <p className="mt-5 text-muted-foreground leading-relaxed max-w-2xl mx-auto">{t("about_body")}</p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+        <div className="grid grid-cols-3 gap-4 mt-6">
           {stats.map((s, i) => (
             <div key={s.label} className="glass card-3d rounded-2xl p-5 text-center animate-fade-up" style={{ animationDelay: `${i*60}ms` }}>
               <div className="mx-auto grid place-items-center h-10 w-10 rounded-xl gradient-primary shadow-glow mb-2">
