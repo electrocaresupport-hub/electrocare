@@ -4,7 +4,7 @@ import { MessageCircle, Phone, Clock, Mail, Send } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/appliances";
 import { useState, type FormEvent } from "react";
 
-export const BUSINESS_EMAIL = "electrocare.services@gmail.com";
+export const BUSINESS_EMAIL = "electrocare.support@gmail.com";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
