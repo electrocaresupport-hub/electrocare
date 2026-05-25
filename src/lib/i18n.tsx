@@ -77,6 +77,7 @@ const bn: Dict = {
   nav_reviews: "রিভিউ",
   nav_location: "লোকেশন",
   nav_policy: "নীতিমালা",
+  nav_blog: "ব্লগ",
   login: "লগইন",
   signup: "সাইন আপ",
   hero_greeting: "নমস্কার স্যার/ম্যাডাম",
