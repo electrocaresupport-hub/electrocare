@@ -63,7 +63,7 @@ function BlogPostPage() {
       </div>
 
       <div className="mt-10 glass rounded-2xl p-6 sm:p-8 space-y-6">
-        {post.content.map((s, i) => (
+        {post.content.map((s: { heading: string; body: string }, i: number) => (
           <div key={i} className="animate-fade-up" style={{ animationDelay: `${i * 60}ms` }}>
             <h2 className="text-xl font-bold text-foreground">{s.heading}</h2>
             <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{s.body}</p>
