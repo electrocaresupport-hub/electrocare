@@ -1,14 +1,16 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useI18n } from "@/lib/i18n";
 import { APPLIANCES, WHATSAPP_NUMBER } from "@/lib/appliances";
-import { ArrowLeft, Upload, Send, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, Upload, Image as ImageIcon, Mail, MessageCircle } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
+
+const BUSINESS_EMAIL = "electrocare.services@gmail.com";
 
 export const Route = createFileRoute("/repair/$appliance")({
   head: () => ({
     meta: [
       { title: "Repair Request — ElectroCare" },
-      { name: "description", content: "Submit a repair request via WhatsApp." },
+      { name: "description", content: "Submit a repair request via WhatsApp or Email." },
     ],
   }),
   component: RepairPage,
@@ -20,9 +22,10 @@ function RepairPage() {
   const { appliance } = useParams({ from: "/repair/$appliance" });
   const item = useMemo(() => APPLIANCES.find((a) => a.slug === appliance), [appliance]);
 
-  const [form, setForm] = useState({ name: "", phone: "", address: "", problem: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", address: "", problem: "" });
   const [photoName, setPhotoName] = useState<string | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   if (!item) {
     return (
@@ -34,19 +37,43 @@ function RepairPage() {
   }
   const Icon = item.icon;
 
-  const onSubmit = (e: FormEvent) => {
+  const validate = () => {
+    if (!form.name.trim() || !form.address.trim() || !form.problem.trim()) {
+      setError("Please fill in name, address and problem description.");
+      return false;
+    }
+    if (!form.phone.trim() && !form.email.trim()) {
+      setError("Please provide a phone number or an email so we can contact you.");
+      return false;
+    }
+    setError(null);
+    return true;
+  };
+
+  const buildMessage = () => [
+    `*${t("request_title")} — ${t("brand")}*`,
+    `${t("field_appliance")}: ${t(item.key)}`,
+    `${t("field_name")}: ${form.name}`,
+    `${t("field_phone")}: ${form.phone || "—"}`,
+    `Email: ${form.email || "—"}`,
+    `${t("field_address")}: ${form.address}`,
+    `${t("field_problem")}: ${form.problem}`,
+    photoName ? `📷 ${photoName}` : "",
+  ].filter(Boolean).join("\n");
+
+  const onWhatsApp = (e: FormEvent) => {
     e.preventDefault();
-    const lines = [
-      `*${t("request_title")} — ${t("brand")}*`,
-      `${t("field_appliance")}: ${t(item.key)}`,
-      `${t("field_name")}: ${form.name}`,
-      `${t("field_phone")}: ${form.phone}`,
-      `${t("field_address")}: ${form.address}`,
-      `${t("field_problem")}: ${form.problem}`,
-      photoName ? `📷 ${photoName}` : "",
-    ].filter(Boolean).join("\n");
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
+    if (!validate()) return;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
     window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const onEmail = () => {
+    if (!validate()) return;
+    const subject = `Repair Request — ${t(item.key)} — ${form.name}`;
+    const body = buildMessage().replace(/\*/g, "");
+    const url = `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = url;
   };
 
   const onPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +107,7 @@ function RepairPage() {
             </div>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-4">
+          <form onSubmit={onWhatsApp} className="space-y-4">
             <Field label={t("field_name")}>
               <input
                 required maxLength={80}
@@ -90,15 +117,26 @@ function RepairPage() {
                 placeholder="Rahim Ahmed"
               />
             </Field>
-            <Field label={t("field_phone")}>
+            <Field label={`${t("field_phone")} (optional)`}>
               <input
-                required type="tel" maxLength={20}
+                type="tel" maxLength={20}
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className="input"
                 placeholder="+880 1700 000000"
               />
             </Field>
+            <Field label="Email (Optional or Preferred Contact)">
+              <input
+                type="email" maxLength={120}
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="input"
+                placeholder="you@example.com"
+              />
+            </Field>
+            <p className="text-xs text-muted-foreground -mt-2">Provide phone or email (at least one).</p>
+
             <Field label={t("field_address")}>
               <input
                 required maxLength={200}
@@ -146,12 +184,28 @@ function RepairPage() {
 
             <p className="text-xs text-muted-foreground italic">{t("charges_note")}</p>
 
-            <button
-              type="submit"
-              className="w-full btn-glow rounded-2xl px-6 py-4 font-semibold inline-flex items-center justify-center gap-2 text-base"
-            >
-              <Send className="h-5 w-5" /> {t("submit")}
-            </button>
+            {error && (
+              <div className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-2.5 text-sm text-destructive">
+                {error}
+              </div>
+            )}
+
+            <div className="grid sm:grid-cols-2 gap-3 pt-2">
+              <button
+                type="submit"
+                className="btn-glow rounded-2xl px-6 py-4 font-semibold inline-flex items-center justify-center gap-2 text-base"
+              >
+                <MessageCircle className="h-5 w-5" /> Send via WhatsApp
+              </button>
+              <button
+                type="button"
+                onClick={onEmail}
+                className="glass-strong hover:bg-primary/5 transition-colors rounded-2xl px-6 py-4 font-semibold inline-flex items-center justify-center gap-2 text-base border border-primary/30 text-primary hover:shadow-glow"
+              >
+                <Mail className="h-5 w-5" /> Send via Email
+              </button>
+            </div>
+            <p className="text-center text-xs text-muted-foreground">Choose either option — both deliver the same details to ElectroCare.</p>
           </form>
         </div>
       </div>
