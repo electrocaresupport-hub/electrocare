@@ -4,7 +4,7 @@ import { APPLIANCES, WHATSAPP_NUMBER } from "@/lib/appliances";
 import { ArrowLeft, Upload, Image as ImageIcon, Mail, MessageCircle } from "lucide-react";
 import { useMemo, useState, type FormEvent } from "react";
 
-const BUSINESS_EMAIL = "electrocare.services@gmail.com";
+const BUSINESS_EMAIL = "electrocare.support@gmail.com";
 
 export const Route = createFileRoute("/repair/$appliance")({
   head: () => ({
