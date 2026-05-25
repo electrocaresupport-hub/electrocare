@@ -13,6 +13,7 @@ const en: Dict = {
   nav_reviews: "Reviews",
   nav_location: "Location",
   nav_policy: "Policy",
+  nav_blog: "Blog",
   login: "Login",
   signup: "Sign Up",
   hero_greeting: "Namaste Sir/Madam",
