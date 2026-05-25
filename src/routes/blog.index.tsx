@@ -3,7 +3,7 @@ import { ArrowRight, Clock, BookOpen } from "lucide-react";
 import { BLOG_POSTS } from "@/lib/blog";
 import { useI18n } from "@/lib/i18n";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   component: BlogPage,
   head: () => ({
     meta: [
