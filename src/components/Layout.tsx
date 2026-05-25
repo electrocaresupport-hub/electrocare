@@ -15,6 +15,7 @@ export function Layout({ children }: { children: ReactNode }) {
     { to: "/services", label: t("nav_services") },
     { to: "/about", label: t("nav_about") },
     { to: "/reviews", label: t("nav_reviews") },
+    { to: "/blog", label: t("nav_blog") },
     { to: "/location", label: t("nav_location") },
     { to: "/contact", label: t("nav_contact") },
     { to: "/policy", label: t("nav_policy") },
