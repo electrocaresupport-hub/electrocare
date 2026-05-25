@@ -139,6 +139,7 @@ const hi: Dict = {
   nav_reviews: "समीक्षाएँ",
   nav_location: "स्थान",
   nav_policy: "नीति",
+  nav_blog: "ब्लॉग",
   login: "लॉगिन",
   signup: "साइन अप",
   hero_greeting: "नमस्ते सर/मैडम",
