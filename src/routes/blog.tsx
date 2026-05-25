@@ -39,10 +39,8 @@ function BlogPage() {
         {BLOG_POSTS.map((post, i) => {
           const Icon = post.icon;
           return (
-            <Link
+            <article
               key={post.slug}
-              to="/blog/$slug"
-              params={{ slug: post.slug }}
               className="group glass card-3d rounded-2xl p-6 flex flex-col gap-4 animate-fade-up"
               style={{ animationDelay: `${i * 80}ms` }}
             >
@@ -60,10 +58,14 @@ function BlogPage() {
                 {post.title}
               </h2>
               <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
-              <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                Read article <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
+              <Link
+                to="/blog/$slug"
+                params={{ slug: post.slug }}
+                className="mt-auto inline-flex items-center justify-center gap-1.5 btn-glow rounded-xl px-4 py-2.5 text-sm font-semibold"
+              >
+                Read Article <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </article>
           );
         })}
       </div>
